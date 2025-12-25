@@ -7,6 +7,7 @@ const pino = require('pino');
 const moment = require('moment-timezone');
 const crypto = require('crypto');
 const axios = require('axios');
+const { Octokit } = require("@octokit/rest");
 
 const {
     default: makeWASocket,
@@ -21,15 +22,15 @@ const config = require('./config');
 const { setupHandlers } = require('./lib/handler');
 const { loadCommands } = require('./lib/commandHandler');
 
-const octokit = new (require('@octokit/rest').Octokit)({ auth: process.env.GITHUB_TOKEN });
+//const octokit = new (require('@octokit/rest').Octokit)({ auth: 'Token github' });
 //const owner = 'townen2';
 //const repo = 'SHADOW-MINI-SESSION';
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN || "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"
+});
 
-//const octokit = new Octokit({
-    //auth: process.env.GITHUB_TOKEN
-//});
-const owner = process.env.GITHUB_REPO_OWNER;
-const repo = process.env.GITHUB_REPO_NAME;
+const owner = process.env.GITHUB_REPO_OWNER || "charuka-ofc";
+const repo = process.env.GITHUB_REPO_NAME || "SESSION_REPO";
 
 const activeSockets = new Map();
 const socketCreationTime = new Map();
