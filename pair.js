@@ -21,13 +21,13 @@ const config = require('./config');
 const { setupHandlers } = require('./lib/handler');
 const { loadCommands } = require('./lib/commandHandler');
 
-//const octokit = new (require('@octokit/rest').Octokit)({ auth: 'Token github' });
+const octokit = new (require('@octokit/rest').Octokit)({ auth: process.env.GITHUB_TOKEN });
 //const owner = 'townen2';
 //const repo = 'SHADOW-MINI-SESSION';
 
-const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN
-});
+//const octokit = new Octokit({
+    //auth: process.env.GITHUB_TOKEN
+//});
 const owner = process.env.GITHUB_REPO_OWNER;
 const repo = process.env.GITHUB_REPO_NAME;
 
